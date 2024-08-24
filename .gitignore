@@ -1,3 +1,5 @@
 .terraform/*
 *.tfstate
 *.tfstate.*
+azure-rg.tf
+azure-vnet.tf 
