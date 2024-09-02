@@ -6,7 +6,7 @@ resource "azurerm_network_interface" "web-nic-block" {
     name = "web-nic-ipconfig"
     private_ip_address_allocation = "Dynamic"
     subnet_id = azurerm_subnet.web-subnet-block.id
-    public_ip_address_id = azurerm_public_ip.web_pub_ip_block.id
+    # public_ip_address_id = azurerm_public_ip.web_pub_ip_block.id
     # primary = true
   }
 }
