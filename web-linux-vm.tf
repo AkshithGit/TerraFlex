@@ -25,25 +25,25 @@ CUSTOM_DATA
 resource "azurerm_linux_virtual_machine" "web_vm_block" {
   name = "${local.resource_name_prefix}-web-vm"
   #computer_name = "web-linux-vm" # Hostname of the VM (Optional)
-  resource_group_name = azurerm_resource_group.my_rg_block.name
-  location = azurerm_resource_group.my_rg_block.location
-  size = "Standard_B1ms"
-  admin_username = "azureuser"
-  network_interface_ids = [ azurerm_network_interface.web-nic-block.id  ]
+  resource_group_name   = azurerm_resource_group.my_rg_block.name
+  location              = azurerm_resource_group.my_rg_block.location
+  size                  = "Standard_B1ms"
+  admin_username        = "azureuser"
+  network_interface_ids = [azurerm_network_interface.web-nic-block.id]
   admin_ssh_key {
-    username = "azureuser"
+    username   = "azureuser"
     public_key = file("${path.module}/ssh-keys/terraform-azure.pub")
   }
   os_disk {
-    caching = "ReadWrite"
+    caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-  }  
+  }
   source_image_reference {
     publisher = "RedHat"
-    offer = "RHEL"
-    sku = "83-gen2"
-    version = "latest"
-  }  
+    offer     = "RHEL"
+    sku       = "83-gen2"
+    version   = "latest"
+  }
   #custom_data = filebase64("${path.module}/app-scripts/redhat-webvm-script.sh")
   custom_data = base64encode(local.webvm_custom_data)
 }
